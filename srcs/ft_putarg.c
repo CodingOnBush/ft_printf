@@ -6,7 +6,7 @@
 /*   By: momrane <momrane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 12:08:32 by momrane           #+#    #+#             */
-/*   Updated: 2023/11/18 14:08:02 by momrane          ###   ########.fr       */
+/*   Updated: 2023/11/18 16:43:23 by momrane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	ft_putarg(const char character, va_list args)
 {
-	char	*str;
-
 	if (character == '%')
 		return (ft_putchar('%'));
 	else if (character == 'c')
@@ -23,16 +21,13 @@ int	ft_putarg(const char character, va_list args)
 	else if (character == 's')
 		return (ft_putstr(va_arg(args, char *)));
 	else if (character == 'd')
-	{
-		str = ft_itoa(va_arg(args, int));
-		return (ft_putstr(str));
-	}	
+		return (ft_putnbr(va_arg(args, int)));
 	else if (character == 'X')
-		return (ft_putnbr_base(va_arg(args, int), "0123456789ABCDEF"));
+		return (ft_putnbr_base(va_arg(args, unsigned int), "0123456789ABCDEF"));
 	else if (character == 'x')
-		return (ft_putnbr_base(va_arg(args, int), "0123456789abcdef"));
+		return (ft_putnbr_base(va_arg(args, unsigned int), "0123456789abcdef"));
 	else if (character == 'i')
-		return (ft_putnbr_base(va_arg(args, int), "0123456789"));
+		return (ft_putnbr(va_arg(args, int)));
 	else if (character == 'u')
 		return (ft_putnbr_base(va_arg(args, unsigned int), "0123456789"));
 	return (0);

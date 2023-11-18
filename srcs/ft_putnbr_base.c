@@ -6,26 +6,23 @@
 /*   By: momrane <momrane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 12:08:11 by momrane           #+#    #+#             */
-/*   Updated: 2023/11/18 14:44:42 by momrane          ###   ########.fr       */
+/*   Updated: 2023/11/18 16:47:42 by momrane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-int	ft_putnbr_base(int nbr, char *base)
+int	ft_putnbr_base(unsigned int nbr, char *base)
 {
-	int			count;
-	long int	n;
-	long int	b;
+	int					count;
+	unsigned long int	n;
+	unsigned long int	b;
 
 	count = 0;
-	n = (long int)nbr;
-	b = (long int)ft_strlen(base);
+	n = (unsigned long int)nbr;
+	b = (unsigned long int)ft_strlen(base);
 	if (n < 0)
-	{
-		count += ft_putchar('-');
-		n = -n;
-	}
+		return (0);
 	if (n >= b)
 		count += ft_putnbr_base(n / b, base);
 	count += ft_putchar(base[n % b]);

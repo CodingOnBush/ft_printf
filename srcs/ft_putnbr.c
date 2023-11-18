@@ -1,31 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: momrane <momrane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 13:57:32 by momrane           #+#    #+#             */
-/*   Updated: 2023/11/18 16:46:50 by momrane          ###   ########.fr       */
+/*   Created: 2023/11/18 16:36:17 by momrane           #+#    #+#             */
+/*   Updated: 2023/11/18 16:47:27 by momrane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-int	ft_putstr(char *s)
+int	ft_putnbr(int nbr)
 {
-	int	i;
+	int			count;
+	long int	n;
 
-	i = 0;
-	if (!s)
+	count = 0;
+	n = (long int)nbr;
+	if (n < 0)
 	{
-		ft_putstr("(null)");
-		return (6);
+		count += ft_putchar('-');
+		n = -n;
 	}
-	while (s[i])
+	if (n >= 10)
 	{
-		ft_putchar(s[i]);
-		i++;
+		count += ft_putnbr(n / 10);
+		count += ft_putchar(n % 10 + '0');
 	}
-	return (i);
+	else
+		count += ft_putchar(n + '0');
+	return (count);
 }
+
+// #include <limits.h>
+
+// int main()
+// {
+//     int number = INT_MIN;
+
+//     ft_putnbr(number);
+//     ft_putchar('\n');
+
+//     return 0;
+// }

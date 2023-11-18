@@ -6,7 +6,7 @@
 /*   By: momrane <momrane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:06:11 by momrane           #+#    #+#             */
-/*   Updated: 2023/11/18 14:58:26 by momrane          ###   ########.fr       */
+/*   Updated: 2023/11/18 16:18:50 by momrane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,85 +14,74 @@
 
 static int	ft_get_mem_size(int n)
 {
-	int	i;
+	int	size;
 
+	size = 0;
 	if (n == 0)
-		return (1);
-	i = 0;
-	if (n < 0)
+		size++;
+	while (n != 0)
 	{
-		i++;
-		n = n * (-1);
+		n /= 10;
+		++size;
 	}
-	while (n > 0)
-	{
-		i++;
-		n = n / 10;
-	}
-	return (i);
+	return (size);
 }
 
-static char	*ft_itoa_neg(int n)
+static void	ft_fillarray(char *s, int size, int n)
 {
-	char	*res;
-	int		s;
+	int	i;
+	int	isneg;
 
-	if (n == INT_MIN)
+	i = size;
+	isneg = 0;
+	if (n < 0)
 	{
-		n++;
-		res = ft_itoa_neg(n);
-		if (!res)
-			return (0);
-		res[ft_get_mem_size(n) - 1] = '8';
-		return (res);
+		isneg = 1;
+		n = -n;
 	}
-	s = ft_get_mem_size(n);
-	n = n * (-1);
-	res = malloc((s +1) * sizeof(char));
-	if (!res)
-		return (0);
-	res[s--] = '\0';
-	while (s >= 0)
+	else
+		i--;
+	while (i >= 0)
 	{
-		res[s--] = n - ((n / 10) * 10) + 48;
-		n = n / 10;
+		s[i] = n % 10 + '0';
+		n /= 10;
+		i--;
 	}
-	return (res);
+	if (isneg)
+		s[0] = '-';
 }
 
 char	*ft_itoa(int n)
 {
 	char	*res;
-	int		s;
+	int		size;
 
-	if (n < 0)
+	if (n == 0)
 	{
-		res = ft_itoa_neg(n);
+		res = ft_calloc(2, sizeof(char));
 		if (!res)
 			return (0);
-		res[0] = '-';
+		res[0] = '0';
 		return (res);
 	}
-	s = ft_get_mem_size(n);
-	res = (char *)malloc((s + 1) * sizeof(char));
+	size = ft_get_mem_size(n);
+	if (n < 0)
+		res = ft_calloc((size + 2), sizeof(char));
+	else
+		res = ft_calloc((size + 1), sizeof(char));
 	if (!res)
 		return (0);
-	res[s--] = '\0';
-	while (s >= 0)
-	{
-		res[s--] = n - ((n / 10) * 10) + 48;
-		n = n / 10;
-	}
+	ft_fillarray(res, size, n);
 	return (res);
 }
 
 // #include <stdio.h>
-// 
+
 // int main(void)
 // {
 // 	int n = -42;
 // 	char *res = ft_itoa(n);
-// 
+
 // 	if (res)
 // 		printf("res : %s\n", res);
 // 	return (0);
