@@ -1,51 +1,79 @@
-# Variadic Functions
+# Fonctions Variadiques
 
-Les fonctions variadic sont des fonctions ayant un nombre varibale d'arguments.  
-Le prototype d'une telle fonction peut ressembler à ceci : 
-```c
-int ft_printf(const char *str, ...);
-```
-Cette partie est appelé **ellipsis** :
-```
-...
-```
-Pour utiliser les arguments de la fonction ft_printf, il faut inclure la librairie :
-```c
-# include <stdarg.h>
-```
-Cette librairie nous permet d'utiliser une structure appelée `va_list` et plusieurs macro :
-- `va_start` : permet d'initialiser une liste qui va commencer au niveau du premier argument
-- `va_arg` : permet d'accéder à l'argument suivant d'une liste.
-- `va_end` : permet de terminer la liste.
-- `va_copy` : permet de copier une liste.  
+Les fonctions variadiques en C permettent de définir des fonctions avec un nombre variable d'arguments. Un exemple courant est la fonction `printf` qui accepte une chaîne de format et un nombre variable d'arguments à imprimer.
 
-Voici notre fonction `ft_printf` :
+## Syntaxe
+
+Le prototype d'une fonction variadique inclut une ellipsis (`...`) pour indiquer la variabilité des arguments :
+
+```c
+int ft_printf(const char *format, ...);
+```
+
+## Utilisation de la librairie `<stdarg.h>`
+
+Pour manipuler les arguments d'une fonction variadique, il est nécessaire d'inclure la librairie `<stdarg.h>`. Cette librairie fournit des macros et des structures de données pour faciliter l'accès aux arguments.
+
+```c
+#include <stdarg.h>
+```
+
+## Macros `<stdarg.h>`
+
+- **`va_list` :** Structure utilisée pour stocker la liste des arguments.
+- **`va_start` :** Initialise la liste d'arguments, à appeler au début de la fonction variadique.
+- **`va_arg` :** Accède à l'argument suivant de la liste.
+- **`va_end` :** Termine l'utilisation de la liste.
+- **`va_copy` :** Copie une liste pour permettre un accès multiple.
+
+## Exemple de fonction variadique : `ft_printf`
+
+Voici un exemple de fonction variadique simple, `ft_printf`, qui pour l'instant ne fait que retourner le nombre de caractères à imprimer.
+
 ```c
 #include <stdarg.h>
 
-int	ft_printf(const char *s, ...)
+int ft_printf(const char *format, ...)
 {
-	int printedlen;
-
-    printedlen = 0;
-    // doing some stuff
-	return (printedlen);
-}
-```
-Pour l'instant notre fonction ne fais pas grand chose mise à part retourner le nombre de caractère que l'on va afficher.  
-On va commencer à utiliser le type `va_list` pour créer une variable permettant de contenir la liste des arguments de notre fonction.  
-```c
-#include <stdarg.h>
-
-int	ft_printf(const char *s, ...)
-{
-	int     printedlen;
+    int printed_len;
     va_list args;
 
-    printedlen = 0;
-    va_start(args, s);
-    // doing some stuff
-	return (printedlen);
+    printed_len = 0;
+    va_start(args, format);
+    // Code pour manipuler les arguments
+    va_end(args);
+
+    return printed_len;
 }
 ```
-On a également utilisé la macro `va_start(args, s)` pour initialiser la variable args. Pour initialiser la variable `args`, `va_start` a besoin de 
+
+Dans cette fonction, `va_start` est utilisé pour initialiser `args` en se basant sur le dernier argument fixe (`format`). Cela permet d'accéder à la liste d'arguments.  
+
+Si on sait que le prochain argument de la liste est de type `int`, on peut faire ceci :
+```c
+#include <stdarg.h>
+
+int ft_printf(const char *format, ...)
+{
+    int printed_len;
+    va_list args;
+    int next;
+
+    printed_len = 0;
+    va_start(args, format);
+    // Code pour manipuler les arguments
+    next = va_arg(args, int);
+    // Utiliser la variable next
+    va_end(args);
+
+    return printed_len;
+}
+```
+
+Ainsi la variable `next` aura la valeur du premier argument de la liste et la macro `va_arg` va mettre à jour la liste `args` pour que l'argument suivant devienne le premier.
+
+Si j'appelle ma fonction ft_printf comme ceci :
+```c
+ft_printf("hello", 42, '0', "42");
+```
+On aura une liste args qui contiendra comme premier élément le nombre 42 puis en utilisant va_arg on va pouvoir stocker dans `next` le 42 et faire en sorte que notre liste soit mise à jour pour que le premier élément soit '0'.
