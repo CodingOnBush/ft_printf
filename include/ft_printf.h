@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momrane <momrane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: allblue <allblue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:52:59 by momrane           #+#    #+#             */
-/*   Updated: 2023/11/18 16:48:37 by momrane          ###   ########.fr       */
+/*   Updated: 2023/11/21 15:33:29 by allblue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,14 @@
 # include <limits.h>
 # include <stdint.h>
 
-void	ft_bzero(void *s, size_t n);
-void	*ft_calloc(size_t nmemb, size_t size);
-char	*ft_itoa(int n);
-int		ft_printf(const char *str, ...);
-int		ft_putarg(const char character, va_list args);
+int		ft_print_integer(int n, char format);
+int		ft_print_ptr(unsigned long ptr);
+int		ft_print_uinteger(unsigned int nb, char format);
+int		ft_printf(const char *s, ...);
 int		ft_putchar(char c);
-int		ft_putnbr_base(unsigned int nbr, char *base);
-void	ft_putstr_range(const char *s, int start, int end);
-int		ft_putstr(char *s);
-int		ft_strlen(const char *s);
-int		ft_putnbr(int nbr);
+int		ft_putnbr_hexa(unsigned long nbr, char format);
+int		ft_putnbr_long(long long nb);
+int		ft_print_string(char *s);
+char	*ft_strchr(const char *s, int c);
 
 #endif
