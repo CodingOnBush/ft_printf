@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momrane <momrane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: allblue <allblue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 12:07:04 by momrane           #+#    #+#             */
-/*   Updated: 2023/11/22 11:32:23 by momrane          ###   ########.fr       */
+/*   Updated: 2023/11/22 21:21:08 by allblue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_print_format(char format, va_list *args, int *counter)
 	else if (ft_strchr("uxX", format))
 		return (ft_print_uinteger(va_arg(*args, unsigned int), format));
 	else if (format == 'p')
-		return (ft_print_ptr(va_arg(*args, unsigned long)));
+		return (ft_print_ptr(va_arg(*args, void *)));
 	*counter = *counter - 1;
 	return (0);
 }

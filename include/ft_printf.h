@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momrane <momrane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: allblue <allblue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:52:59 by momrane           #+#    #+#             */
-/*   Updated: 2023/11/22 11:17:14 by momrane          ###   ########.fr       */
+/*   Updated: 2023/11/22 21:22:29 by allblue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdint.h>
 
 int		ft_print_integer(int n, char format);
-int		ft_print_ptr(unsigned long ptr);
+int		ft_print_ptr(void *ptr);
 int		ft_print_uinteger(unsigned int nb, char format);
 int		ft_printf(const char *s, ...);
 int		ft_putchar(char c);

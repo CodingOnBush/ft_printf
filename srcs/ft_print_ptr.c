@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_ptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momrane <momrane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: allblue <allblue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 11:14:56 by momrane           #+#    #+#             */
-/*   Updated: 2023/11/22 13:19:38 by momrane          ###   ########.fr       */
+/*   Updated: 2023/11/22 21:25:09 by allblue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@ static int	ft_print_second_part(unsigned long ptr)
 	return (count);
 }
 
-int	ft_print_ptr(unsigned long ptr)
+int	ft_print_ptr(void *ptr)
 {
 	int	count;
 
 	count = 0;
-	if (!ptr)
+	if ((unsigned long)ptr == 0)
+		return (ft_print_string("0x0"));
+	if (ptr == NULL)
 		return (ft_print_string("(nil)"));
 	count += ft_print_string("0x");
 	count += ft_print_second_part((unsigned long)ptr);
