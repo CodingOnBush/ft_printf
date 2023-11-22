@@ -6,7 +6,7 @@
 #    By: momrane <momrane@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 15:35:19 by momrane           #+#    #+#              #
-#    Updated: 2023/11/22 11:25:18 by momrane          ###   ########.fr        #
+#    Updated: 2023/11/22 14:55:29 by momrane          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,15 +22,7 @@ SRCS = 	./srcs/ft_print_integer.c \
 		./srcs/ft_putnbr_hexa.c \
 		./srcs/ft_print_string.c \
 		./srcs/ft_strchr.c 
-
-OBJS = 	./srcs/ft_print_integer.o \
-		./srcs/ft_print_ptr.o \
-		./srcs/ft_print_uinteger.o \
-		./srcs/ft_printf.o \
-		./srcs/ft_putchar.o \
-		./srcs/ft_putnbr_hexa.o \
-		./srcs/ft_print_string.o \
-		./srcs/ft_strchr.o 
+OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
