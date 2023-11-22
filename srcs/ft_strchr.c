@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: momrane <momrane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 14:06:09 by momrane           #+#    #+#             */
-/*   Updated: 2023/11/16 12:04:19 by momrane          ###   ########.fr       */
+/*   Created: 2023/11/22 11:11:40 by momrane           #+#    #+#             */
+/*   Updated: 2023/11/22 11:12:23 by momrane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strchr(const char *s, int c)
 	}
 	if (*ptr == val)
 		return (ptr);
-	return (NULL);
+	return (0);
 }
 
 // #include <stdio.h>

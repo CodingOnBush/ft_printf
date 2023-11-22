@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_u.c                                      :+:      :+:    :+:   */
+/*   ft_print_uinteger.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: allblue <allblue@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momrane <momrane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 12:08:11 by momrane           #+#    #+#             */
-/*   Updated: 2023/11/21 13:12:18 by allblue          ###   ########.fr       */
+/*   Created: 2023/11/22 11:15:45 by momrane           #+#    #+#             */
+/*   Updated: 2023/11/22 11:19:14 by momrane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 int	ft_print_uinteger(unsigned int nb, char format)
 {
 	int					count;
-	unsigned long	n;
+	unsigned long		n;
 
 	if (format == 'x' || format == 'X')
 		return (ft_putnbr_hexa(nb, format));
 	count = 0;
 	n = (unsigned long)nb;
 	if (n >= 10)
-		count += ft_print_uinteger(n /10, format);
+		count += ft_print_uinteger(n / 10, format);
 	count += ft_putchar((n % 10) + '0');
 	return (count);
 }

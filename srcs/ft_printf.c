@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: allblue <allblue@student.42.fr>            +#+  +:+       +#+        */
+/*   By: momrane <momrane@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 12:07:04 by momrane           #+#    #+#             */
-/*   Updated: 2023/11/21 15:59:15 by allblue          ###   ########.fr       */
+/*   Updated: 2023/11/22 11:32:23 by momrane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-static int ft_print_format(char format, va_list *args, int *counter)
+static int	ft_print_format(char format, va_list *args, int *counter)
 {
 	*counter += 2;
 	if (format == '%')
@@ -46,7 +46,6 @@ int	ft_printf(const char *s, ...)
 			len_printed += ft_print_format(s[i + 1], &args, &i);
 		else
 			len_printed += ft_putchar(s[i++]);
-		
 	}
 	va_end(args);
 	return (len_printed);
@@ -65,22 +64,18 @@ int	ft_printf(const char *s, ...)
 
 // 	//result = ft_printf("%s, %d, %c\n", "Test", 123, 'A');
 // 	//printf("Result: %d\n", result);
-	
-// 	printf("printf:\n");
-// 	result = printf(" %p %p ", LONG_MIN, LONG_MAX);
-// 	printf("Result: %d\n", result);
-// 	result = printf(" %p %p ", ULONG_MAX, -ULONG_MAX);
-// 	printf("Result: %d\n", result);
 
-// 	printf("ft_printf:\n");
-// 	result = ft_printf(" %p %p ", LONG_MIN, LONG_MAX);
+// 	// printf("printf:\n");
+// 	// result = printf(" %p %p ", LONG_MIN, LONG_MAX);
+// 	// printf("Result: %d\n", result);
+// 	// result = printf(" %p %p ", ULONG_MAX, -ULONG_MAX);
+// 	// printf("Result: %d\n", result);
+
+// 	// printf("ft_printf:\n");
+// 	result = ft_printf(" %p %p ", NULL, NULL);
 // 	printf("Result: %d\n", result);
-// 	result = ft_printf(" %p %p ", ULONG_MAX, -ULONG_MAX);
+// 	result = printf(" %p %p ", NULL, NULL);
 // 	printf("Result: %d\n", result);
 
 // 	return (0);
 // }
-/*
-TEST(6, print(" %p %p ", LONG_MIN, LONG_MAX));
-TEST(8, print(" %p %p ", ULONG_MAX, -ULONG_MAX));
-*/
